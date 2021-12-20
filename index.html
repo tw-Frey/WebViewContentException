@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        input[type=checkbox] {
+            vertical-align: top;
+            margin-left: -20px;
+            margin-right: 0;
+            width: 20px;
+        }
+        input:disabled,
+        input:enabled:checked+img {
+            display:none;
+        }
+    </style>
+</head>
 <body>
     <button style="float:right" onclick="location.reload()">重新載入</button>
     <img id="qr"/>
     <hr/>
     <span>延遲 1 秒</span><br/>
-    <img id="late1_img"/><img id="late1_qr"/><span id="late1_span"></span>
+    <img id="late1_img"/><input type=checkbox id=late1_cb disabled><img id="late1_qr"/><span id="late1_span"></span>
     <hr/>
     <span>延遲 5 秒</span><br/>
-    <img id="late5_img"/><img id="late5_qr"/><span id="late5_span"></span>
+    <img id="late5_img"/><input type=checkbox id=late5_cb disabled><img id="late5_qr"/><span id="late5_span"></span>
     <hr/>
     <span>延遲 10 秒</span><br/>
-    <img id="late10_img"/><img id="late10_qr"/><span id="late10_span"></span>
+    <img id="late10_img"/><input type=checkbox id=late10_cb disabled><img id="late10_qr"/><span id="late10_span"></span>
     <hr/>
     <span>延遲 20 秒</span><br/>
-    <img id="late20_img"/><img id="late20_qr"/><span id="late20_span"></span>
+    <img id="late20_img"/><input type=checkbox id=late20_cb disabled><img id="late20_qr"/><span id="late20_span"></span>
     <hr/>
     <span>延遲 30 秒</span><br/>
-    <img id="late30_img"/><img id="late30_qr"/><span id="late30_span"></span>
+    <img id="late30_img"/><input type=checkbox id=late30_cb disabled><img id="late30_qr"/><span id="late30_span"></span>
     <hr/>
     <span>延遲 50 秒</span><br/>
-    <img id="late50_img"/><img id="late50_qr"/><span id="late50_span"></span>
+    <img id="late50_img"/><input type=checkbox id=late50_cb disabled><img id="late50_qr"/><span id="late50_span"></span>
     <hr/>
     <span>延遲 59 秒</span><br/>
-    <img id="late59_img"/><img id="late59_qr"/><span id="late59_span"></span>
+    <img id="late59_img"/><input type=checkbox id=late59_cb disabled><img id="late59_qr"/><span id="late59_span"></span>
     <hr/>
     <span>延遲 60 秒</span><br/>
-    <img id="late60_img"/><img id="late60_qr"/><span id="late60_span"></span>
+    <img id="late60_img"/><input type=checkbox id=late60_cb disabled><img id="late60_qr"/><span id="late60_span"></span>
     <script>
         var chl = encodeURIComponent("etmall://open?pgid=43&url=" + encodeURIComponent("https://tw-frey.github.io/WebViewContentException/"))
         document.getElementById("qr").src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl="+chl;
         (()=>{
-            const late_span_img = (delay,span,img,qr) => {
+            const late_span_img = (delay,span,img,qr,cb) => {
                 const alts = ["loading","loading.","loading..","loading...","loading...."]
                 var i = 0
                 var isLoaded = false
@@ -40,6 +54,7 @@
                     i = (i+1) % alts.length
                     if (isLoaded) {
                         span.innerHTML = ""
+                        cb.disabled = false
                         return
                     }
                     setTimeout(ALTS, 500)
@@ -54,7 +69,8 @@
                     prefix.slice(4)*1000,
                     document.getElementById(prefix+"_span"),
                     document.getElementById(prefix+"_img"),
-                    document.getElementById(prefix+"_qr")
+                    document.getElementById(prefix+"_qr"),
+                    document.getElementById(prefix+"_cb")
                 )
             })
         })()
