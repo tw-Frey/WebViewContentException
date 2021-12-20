@@ -5,33 +5,33 @@
     <img id="qr"/>
     <hr/>
     <span>延遲 1 秒</span><br/>
-    <img id="late1_img"/><span id="late1_span"></span>
+    <img id="late1_img"/><img id="late1_qr"/><span id="late1_span"></span>
     <hr/>
     <span>延遲 5 秒</span><br/>
-    <img id="late5_img"/><span id="late5_span"></span>
+    <img id="late5_img"/><img id="late5_qr"/><span id="late5_span"></span>
     <hr/>
     <span>延遲 10 秒</span><br/>
-    <img id="late10_img"/><span id="late10_span"></span>
+    <img id="late10_img"/><img id="late10_qr"/><span id="late10_span"></span>
     <hr/>
     <span>延遲 20 秒</span><br/>
-    <img id="late20_img"/><span id="late20_span"></span>
+    <img id="late20_img"/><img id="late20_qr"/><span id="late20_span"></span>
     <hr/>
     <span>延遲 30 秒</span><br/>
-    <img id="late30_img"/><span id="late30_span"></span>
+    <img id="late30_img"/><img id="late30_qr"/><span id="late30_span"></span>
     <hr/>
     <span>延遲 50 秒</span><br/>
-    <img id="late50_img"/><span id="late50_span"></span>
+    <img id="late50_img"/><img id="late50_qr"/><span id="late50_span"></span>
     <hr/>
     <span>延遲 59 秒</span><br/>
-    <img id="late59_img"/><span id="late59_span"></span>
+    <img id="late59_img"/><img id="late59_qr"/><span id="late59_span"></span>
     <hr/>
     <span>延遲 60 秒</span><br/>
-    <img id="late60_img"/><span id="late60_span"></span>
+    <img id="late60_img"/><img id="late60_qr"/><span id="late60_span"></span>
     <script>
         var chl = encodeURIComponent("etmall://open?pgid=43&url=" + encodeURIComponent("https://tw-frey.github.io/WebViewContentException/"))
         document.getElementById("qr").src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl="+chl;
         (()=>{
-            const late_span_img = (delay,span,img) => {
+            const late_span_img = (delay,span,img,qr) => {
                 const alts = ["loading","loading.","loading..","loading...","loading...."]
                 var i = 0
                 var isLoaded = false
@@ -47,9 +47,15 @@
                 setTimeout(ALTS, 500)
                 img.onload = () => isLoaded = true
                 img.src = "https://deelay.me/"+delay+"/https://picsum.photos/200/200"
+                qr.src = "https://deelay.me/"+delay+"/https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl="+encodeURIComponent("etmall://open?pgid=43&url=" + encodeURIComponent("https://deelay.me/"+delay+"/https://picsum.photos/200/200"))
             }
             ["late1","late5","late10","late20","late30","late50","late59","late60"].forEach(prefix=>{
-                late_span_img(prefix.slice(4)*1000, document.getElementById(prefix+"_span"), document.getElementById(prefix+"_img"))
+                late_span_img(
+                    prefix.slice(4)*1000,
+                    document.getElementById(prefix+"_span"),
+                    document.getElementById(prefix+"_img"),
+                    document.getElementById(prefix+"_qr")
+                )
             })
         })()
     </script>
