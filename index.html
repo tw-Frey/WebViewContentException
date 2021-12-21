@@ -10,8 +10,11 @@
             width: 20px;
         }
         input:disabled,
-        input:enabled:checked+img {
+        input:enabled+img {
             display:none;
+        }
+        input:enabled:checked+img {
+            display:unset;
         }
         hr {
             clear: both;
@@ -19,44 +22,79 @@
         button {
             margin-bottom: 5px;
             display: block;
-            width: 160px;
+            width: 120px;
+        }
+        label {
+            margin-right: 5px;
         }
     </style>
+    <script>
+        function updateQR(pgid,tb) {
+            var src;
+            src = encodeURIComponent("https://tw-frey.github.io/WebViewContentException?pgid="+pgid+"&tb="+tb);
+            src = encodeURIComponent("etmall://open?pgid="+pgid+"&tb="+tb+"&url=" + src);
+            src = "https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl="+src;
+            document.getElementById("qr").src=src
+            pgid_tb[1] = pgid
+            pgid_tb[2] = tb
+            console.log(pgid,tb)
+        }
+        function updateQR_pgid(pgid) {
+            updateQR(pgid,pgid_tb[2])
+        }
+        function updateQR_tb(tb) {
+            updateQR(pgid_tb[1],tb)
+        }
+    </script>
 </head>
 <body>
+    <div style="display:inline-block; border: solid 1px;">
+        <span>PGID</span><br>
+        <input type=radio name=pgid value=43 id=pgid_43 onclick="updateQR_pgid(43)"><label for=pgid_43>43</label>
+        <input type=radio name=pgid value=44 id=pgid_44 onclick="updateQR_pgid(44)"><label for=pgid_44>44</label>
+        <input type=radio name=pgid value=52 id=pgid_52 onclick="updateQR_pgid(52)"><label for=pgid_52>52</label>
+        <input type=radio name=pgid value=75 id=pgid_75 onclick="updateQR_pgid(75)"><label for=pgid_75>75</label>
+        <input type=radio name=pgid value=78 id=pgid_78 onclick="updateQR_pgid(78)"><label for=pgid_78>78</label>
+    </div>
+    <div style="display:inline-block; border: solid 1px;">
+        <span>tb</span><br>
+        <input type=radio name=tb value=0 id=tb_0 onclick="updateQR_tb(0)"><label for=tb_0>0</label>
+        <input type=radio name=tb value=1 id=tb_1 onclick="updateQR_tb(1)"><label for=tb_1>1</label>
+    </div>
+    <hr>
     <img id="qr" style="float: left" width=200 height=200/>
     <div style="display:inline-block">
         <button onclick="location.reload()">重新載入</button>
         <button onclick="abcdefg()">Uncaught ReferenceError</button>
         <button onclick="TimeRanges()">Uncaught TypeError</button>
         <button onclick="throw 'ETMall'">Uncaught ETMall</button>
-        <button onclick="fetch('https://aaa.bbb.ccc')">JS AJAX Exception: fetch('https://aaa.bbb.ccc')</button>
-        <button onclick="fetch('https://www.google.com')">JS AJAX Exception: fetch('https://www.google.com')</button>
+        <button onclick="fetch('https://aaa.bbb.ccc')">JS AJAX Exception: fetch https://aaa.bbb.ccc</button>
+        <button onclick="fetch('https://www.google.com')">JS AJAX Exception: fetch https://www.google.com</button>
     </div>
     <hr/>
     <span>延遲 1 秒</span><br/>
-    <img id="late1_img"/><input type=checkbox id=late1_cb disabled><img id="late1_qr"/><span id="late1_span"></span>
+    <img id="late1_img"/><input type=checkbox id=late1_cb disabled checked><img id="late1_qr"/><span id="late1_span"></span>
     <hr/>
     <span>延遲 5 秒</span><br/>
-    <img id="late5_img"/><input type=checkbox id=late5_cb disabled><img id="late5_qr"/><span id="late5_span"></span>
+    <img id="late5_img"/><input type=checkbox id=late5_cb disabled checked><img id="late5_qr"/><span id="late5_span"></span>
     <hr/>
     <span>延遲 10 秒</span><br/>
-    <img id="late10_img"/><input type=checkbox id=late10_cb disabled><img id="late10_qr"/><span id="late10_span"></span>
+    <img id="late10_img"/><input type=checkbox id=late10_cb disabled checked><img id="late10_qr"/><span id="late10_span"></span>
     <hr/>
     <span>延遲 20 秒</span><br/>
-    <img id="late20_img"/><input type=checkbox id=late20_cb disabled><img id="late20_qr"/><span id="late20_span"></span>
+    <img id="late20_img"/><input type=checkbox id=late20_cb disabled checked><img id="late20_qr"/><span id="late20_span"></span>
     <hr/>
     <span>延遲 30 秒</span><br/>
-    <img id="late30_img"/><input type=checkbox id=late30_cb disabled><img id="late30_qr"/><span id="late30_span"></span>
+    <img id="late30_img"/><input type=checkbox id=late30_cb disabled checked><img id="late30_qr"/><span id="late30_span"></span>
     <hr/>
     <span>延遲 50 秒</span><br/>
-    <img id="late50_img"/><input type=checkbox id=late50_cb disabled><img id="late50_qr"/><span id="late50_span"></span>
+    <img id="late50_img"/><input type=checkbox id=late50_cb disabled checked><img id="late50_qr"/><span id="late50_span"></span>
     <hr/>
     <span>延遲 59 秒</span><br/>
-    <img id="late59_img"/><input type=checkbox id=late59_cb disabled><img id="late59_qr"/><span id="late59_span"></span>
+    <img id="late59_img"/><input type=checkbox id=late59_cb disabled checked><img id="late59_qr"/><span id="late59_span"></span>
     <hr/>
     <span>延遲 60 秒</span><br/>
-    <img id="late60_img"/><input type=checkbox id=late60_cb disabled><img id="late60_qr"/><span id="late60_span"></span>
+    <img id="late60_img"/><input type=checkbox id=late60_cb disabled checked><img id="late60_qr"/><span id="late60_span"></span>
     <hr/>
     net::ERR_CERT_COMMON_NAME_INVALID<br>
     <img width=300 src=http://www.dshminsu.com/images/top-pic/h-pic-06.jpg><br>
@@ -70,8 +108,10 @@
     <img width=300 src=http://www.dshminsu.com/images/MyPhoto/IMG_2237-min.JPG><br>
     <a href=http://www.dshminsu.com/images/MyPhoto/IMG_2237-min.JPG>http://www.dshminsu.com/images/MyPhoto/IMG_2237-min.JPG</a>
     <script>
-        var chl = encodeURIComponent("etmall://open?pgid=43&url=" + encodeURIComponent("https://tw-frey.github.io/WebViewContentException/"))
-        document.getElementById("qr").src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl="+chl;
+        const pgid_tb = /pgid=(\d\d)&tb=(\d)/.exec(location.search) || [0,44,1]
+        document.getElementsByName("pgid").forEach(pgid=>pgid.checked=pgid.value==pgid_tb[1])
+        document.getElementsByName("tb").forEach(tb=>tb.checked=tb.value==pgid_tb[2])
+        updateQR(pgid_tb[1],pgid_tb[2]);
         (()=>{
             const late_span_img = (delay,span,img,qr,cb) => {
                 const alts = ["loading","loading.","loading..","loading...","loading...."]
