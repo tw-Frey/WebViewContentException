@@ -21,8 +21,11 @@
         }
         button {
             margin-bottom: 5px;
-            display: block;
-            width: 120px;
+            width: 100px;
+            height: 51px;
+        }
+        button.fetch {
+            width: 144px;
         }
         label {
             margin-right: 5px;
@@ -62,14 +65,15 @@
         <input type=radio name=tb value=1 id=tb_1 onclick="updateQR_tb(1)"><label for=tb_1>1</label>
     </div>
     <hr>
-    <img id="qr" style="float: left" width=200 height=200/>
-    <div style="display:inline-block">
-        <button onclick="location.reload()">重新載入</button>
+    <div style="display: flex;flex-direction: column;flex-wrap: wrap;width: 344px;height: 168px;">
+        <img id="qr" width=100 height=100>
+        <button onclick="location.reload()" style="flex-grow:2">重新載入</button>
         <button onclick="abcdefg()">Uncaught ReferenceError</button>
         <button onclick="TimeRanges()">Uncaught TypeError</button>
         <button onclick="throw 'ETMall'">Uncaught ETMall</button>
-        <button onclick="fetch('https://aaa.bbb.ccc')">JS AJAX Exception: fetch https://aaa.bbb.ccc</button>
-        <button onclick="fetch('https://www.google.com')">JS AJAX Exception: fetch https://www.google.com</button>
+        <button onclick="fetch('https://aaa.bbb.ccc')" class=fetch>JS AJAX Exception: fetch https://aaa.bbb.ccc</button>
+        <button onclick="fetch('https://www.google.com')" class=fetch>JS AJAX Exception: fetch https://www.google.com</button>
+        <button onclick="fetch('https://192.168.200.100')" class=fetch>JS AJAX Exception: fetch https://192.168.200.100</button>
     </div>
     <hr/>
     <span>延遲 1 秒</span><br/>
