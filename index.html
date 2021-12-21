@@ -67,7 +67,7 @@
     <hr>
     <div style="display: flex;flex-direction: column;flex-wrap: wrap;width: 344px;height: 168px;">
         <img id="qr" width=100 height=100>
-        <button onclick="location.reload()" style="flex-grow:2">重新載入</button>
+        <button onclick="confirm('確定要重新載入?') && location.reload()" style="flex-grow:2">重新載入</button>
         <button onclick="abcdefg()">Uncaught ReferenceError</button>
         <button onclick="TimeRanges()">Uncaught TypeError</button>
         <button onclick="throw 'ETMall'">Uncaught ETMall</button>
